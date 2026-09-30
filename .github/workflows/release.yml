@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies
+        run: pip install -r tests/requirements.txt
+
+      - name: Run tests
+        run: python -m pytest tests/ -v
+
+      - name: Install PyInstaller
+        run: pip install --upgrade pyinstaller
+
+      - name: Build executable
+        run: pyinstaller --onefile --console --name camera_distance camera_distance.py
+
+      - name: Create release and upload executable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" "dist/camera_distance.exe" --generate-notes
