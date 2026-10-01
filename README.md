@@ -6,7 +6,7 @@ A tool that patches Dota 2's `client.dll` to raise the default camera zoom dista
 [![License: MIT](https://img.shields.io/github/license/vladatman/dota2-camera-distance)](LICENSE)
 [![Tests](https://github.com/vladatman/dota2-camera-distance/actions/workflows/tests.yml/badge.svg)](https://github.com/vladatman/dota2-camera-distance/actions/workflows/tests.yml)
 
-![Before / after screenshot placeholder](docs/before-after.png)
+![Camera distance before/after comparison](docs/before-after.png)
 
 ## Disclaimer
 
